@@ -1,0 +1,6 @@
+{
+    "subject":["contains", "does not contain", "equals", "does not equals"],
+    "from":["contains", "does not contain", "equals", "does not equals"],
+    "message":["contains", "does not contain", "equals", "not equals"],
+    "received":["less than", "greator than"]
+}
