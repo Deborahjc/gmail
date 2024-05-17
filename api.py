@@ -11,7 +11,7 @@ import database
 
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
+SCOPES = ["https://www.googleapis.com/auth/gmail.modify", "https://www.googleapis.com/auth/gmail.readonly"]
 
 def get_rules():
   field_map = {
@@ -137,13 +137,13 @@ def main():
   connection = psycopg2.connect(database=os.getenv("DATABASE_NAME"), 
                           user=os.getenv("DATABASE_USER"), 
                           password=os.getenv("DATABASE_PASSWORD"), 
-                          host=os.getenv("DATABASE_PASSWORD"), 
+                          host=os.getenv("DATABASE_HOST"), 
                           port=os.getenv("DATABASE_PORT"))
   
   db = database.Database(connection=connection)
   message_ids = db.get_message_ids(rules=rules, predicate=predicate)
   for id in message_ids:
-    modify(messageid=id, creds=creds, label=label)
+    modify(messageid=id[0], creds=creds, label=label)
 
 
 if __name__ == "__main__":

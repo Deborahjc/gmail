@@ -8,8 +8,6 @@ import api
 
 load_dotenv()
 
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
-
 class Database:
 
   def __init__(self, connection):
@@ -38,7 +36,8 @@ class Database:
   def save_to_db(self, values):
 
     for value in values:
-      time = datetime.strptime(value["received_on"], '%a, %d %b %Y %H:%M:%S %z (%Z)')
+      print("time ", value["received_on"])
+      time = datetime.strptime(value["received_on"][:25], '%a,  %d %b %Y %H:%M:%S')
       query = f''' 
           INSERT INTO "Messages"
           ("MessageID", "From", "To", "Subject", "ReceivedOn")
@@ -65,7 +64,7 @@ class Database:
     with self.connection.cursor() as cursor:
       cursor.execute(query=query)
       message_ids = cursor.fetchall()
-      cursor.commit()
+      self.connection.commit()
     return message_ids
 
 
