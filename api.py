@@ -33,8 +33,8 @@ def get_rules():
   rules = []
   while True:
 
-    field = input("enter field name: ")
-    constrain = input("enter constrain: ")
+    field = input("enter field name (FROM, TO, SUBJECT, RECEIVED): ")
+    constrain = input("enter constrain (CONTAINS, DOES NOT CONTAIN, EQUALS, NOT EQUALS): ")
     value = input("enter value: ")
 
     if constrain == "contains" or constrain == "does not contain":
@@ -45,7 +45,7 @@ def get_rules():
     if new_rule == "false":
       break 
   
-  predicate = predicate_map[input("predicate all or any: ")]
+  predicate = predicate_map[input("enter predicate (ALL, ANY): ")]
 
   while True:
 
