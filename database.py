@@ -17,12 +17,13 @@ class Database:
 
 
   def create_db_table(self):
+    print("sdg")
 
     query = '''
       CREATE TABLE IF NOT EXISTS "Messages"(
       "ID"                  SERIAL PRIMARY KEY,
       "MessageID"           VARCHAR(50),
-      "From"                VARCHAR(50),
+      "From"                VARCHAR(100),
       "To"                  VARCHAR(50),
       "Subject"             TEXT,
       "ReceivedOn"          TIMESTAMP
@@ -72,7 +73,7 @@ def main():
   connection = psycopg2.connect(database=os.getenv("DATABASE_NAME"), 
                           user=os.getenv("DATABASE_USER"), 
                           password=os.getenv("DATABASE_PASSWORD"), 
-                          host=os.getenv("DATABASE_PASSWORD"), 
+                          host=os.getenv("DATABASE_HOST"), 
                           port=os.getenv("DATABASE_PORT"))
   
   db = Database(connection=connection)
@@ -81,5 +82,5 @@ def main():
   messages = api.fetch_messages(creds)
   db.save_to_db(messages)
 
-if __name__ == "main":
+if __name__ == "__main__":
   main()
