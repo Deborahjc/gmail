@@ -12,7 +12,7 @@ SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 
 class Database:
 
-  def __init__(self, connection:psycopg2.connection):
+  def __init__(self, connection):
     self.connection = connection
 
 
