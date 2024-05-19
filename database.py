@@ -15,7 +15,6 @@ class Database:
 
 
   def create_db_table(self):
-    print("sdg")
 
     query = '''
       CREATE TABLE IF NOT EXISTS "Messages"(
@@ -79,7 +78,7 @@ def main():
   db.create_db_table()
   creds = api.authenticate_gmail_api()
   messages = api.fetch_messages(creds)
-  db.save_to_db(messages)
+  db.save_to_db(messages[:10])
 
 if __name__ == "__main__":
   main()
